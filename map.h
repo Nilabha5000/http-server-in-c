@@ -1,7 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 #include <stdlib.h>
-#define MAXLEN 10
+#define MAXLEN 100
 
 typedef struct nlist{
      char *path;
