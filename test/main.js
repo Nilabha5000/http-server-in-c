@@ -28,8 +28,8 @@ let hiBtn = document.getElementById("hi-btn");
 hiBtn.addEventListener("click", function() {
 
    let subHeading = document.getElementById("sub-heading");
-   clickCount = !clickCount; // Toggle clickCount
-     if(clickCount){
+   click1 = !click1; // Toggle clickCount
+     if(click1){
           subHeading.innerHTML = "Hello, Hi Button!";
      }
      else{

@@ -3,27 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>intro</title>
-    
+    <title>My Simple HTTP Server</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8080/style1">
 </head>
-
-
 <body>
-    <h1 id = "heading">Hello, World!</h1>
-    <button id = "hi-btn">hi</button>
-    <button id = "btn">click it</button>
-     <h2 id = "sub-heading"></h2>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. <br>
-        Excepturi iste iure quibusdam ipsa beatae ad illo impedit placeat,<br>
-         animi corrupti aut culpa recusandae soluta voluptatibus velit pariatur temporibus deleniti tenetur?</p>
-  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. <br>
-        Excepturi iste iure quibusdam ipsa beatae ad illo impedit placeat,<br>
-         animi corrupti aut culpa recusandae soluta voluptatibus velit pariatur temporibus deleniti tenetur?</p>
-    <img src="http://127.0.0.1:8080/scene.jpg" alt="not available">
-   
-  <a href = "http://127.0.0.1:8080/about">go to about</a>
+    <header>
+        <h1 id="heading">Welcome to My HTTP Server</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
 
-   <script src = "http://127.0.0.1:8080/main.js"></script>
-   <link rel = "stylesheet" href = "http://127.0.0.1:8080/style1">
+    <main>
+        <p>This is a simple HTTP server built using C programming language. It supports serving HTML, CSS, JS, and image files.</p>
+        <img src="http://127.0.0.1:8080/scene.jpg" alt="Demo Image" width="500">
+        <div class="btn-group">
+            <button id="hi-btn">Say Hi</button>
+            <button id="btn">Update Heading</button>
+        </div>
+        <h2 id="sub-heading"></h2>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My HTTP Server</p>
+    </footer>
+
+    <script src="http://127.0.0.1:8080/main.js"></script>
+    <link rel="stylesheet" href="http://127.0.0.1:8080/style1">
 </body>
 </html>
+
