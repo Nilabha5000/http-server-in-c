@@ -135,12 +135,12 @@ int main(){
      mp = init();
      printf("\n-----------------------------------------------\n");
      //mapping path with html file , javascript file and image file
-     route(mp, "/" , "index.html");
-     route(mp,"/about", "about.html");
-     route(mp,"/scene.jpg", "scene.jpg");
-     route(mp,"/contact", "contact.html");
-     route(mp,"/scene1","pexels-eberhardgross-1302242.jpg");
-     route(mp,"/main.js", "main.js");
+     route(mp, "/" , "test/index.html");
+     route(mp,"/about", "test/about.html");
+     route(mp,"/scene.jpg", "test/scene.jpg");
+     route(mp,"/contact", "test/contact.html");
+     route(mp,"/scene1","test/pexels-eberhardgross-1302242.jpg");
+     route(mp,"/main.js", "test/main.js");
      printf(" / --> %s\n", get_page_name(mp ,"/"));
      printf(" /about --> %s\n", get_page_name(mp,"/about"));
      printf(" /contact --> %s\n", get_page_name(mp,"/contact"));
