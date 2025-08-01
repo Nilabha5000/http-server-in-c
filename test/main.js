@@ -1,7 +1,7 @@
 let c = 10;
 let d = "hello";
 
-let clickCount = false;
+let click1 = false;
 function sayhello(){
      for(let i = 0; i < 10; i++){
          console.log("hello world");
@@ -12,7 +12,9 @@ function sayhello(){
 
 function JustCallMe(){
    let heading = document.getElementById("heading");
+   console.log("hello" + heading.innerHTML);
    heading.innerHTML = "Hello, JavaScript!";
+   
 }
 
 let btn = document.getElementById("btn");

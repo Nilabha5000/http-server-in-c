@@ -77,6 +77,28 @@ void sendHTML(int clientfd, char *filename){
       }
      
 }
+void sendCSS(int clientfd , char *filename){
+    if(strstr(filename,".css") == NULL){
+           perror("Provided file is not a css file");
+          return;
+      }
+      
+      FILE *css = fopen(filename, "r");
+      if(css){
+         char response_header[] = "HTTP/1.1 200 OK\r\nContent-Type: text/css\r\n\r\n";
+         send(clientfd, response_header, strlen(response_header), 0);
+
+        char read_buffer[1024];
+        while(fgets(read_buffer,1024,css)){
+            send(clientfd , read_buffer, strlen(read_buffer), 0);
+            memset(read_buffer,0,1024);
+        }
+         fclose(css);
+      }
+      else{
+          perror("no such css file exist!\n");
+      }
+}
 // this function sends a image file to the client
 void sendImage(int clientfd , char *filename){
         if(strstr(filename,".jpg") == NULL){
@@ -141,6 +163,7 @@ int main(){
      route(mp,"/contact", "test/contact.html");
      route(mp,"/scene1","test/pexels-eberhardgross-1302242.jpg");
      route(mp,"/main.js", "test/main.js");
+     route(mp,"/style1","test/style1.css");
      printf(" / --> %s\n", get_page_name(mp ,"/"));
      printf(" /about --> %s\n", get_page_name(mp,"/about"));
      printf(" /contact --> %s\n", get_page_name(mp,"/contact"));
@@ -183,6 +206,8 @@ int main(){
                 if(strstr(filename, ".js") != NULL){
                     sendJS(client_sock, filename);
                 }
+                else if(strstr(filename,".css") != NULL)
+                     sendCSS(client_sock , filename);
                 else if(strstr(filename, ".html") != NULL){
                     sendHTML(client_sock, filename);
                 }
