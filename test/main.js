@@ -2,6 +2,7 @@ let c = 10;
 let d = "hello";
 
 let click1 = false;
+let click2 = false;
 function sayhello(){
      for(let i = 0; i < 10; i++){
          console.log("hello world");
@@ -11,9 +12,15 @@ function sayhello(){
 }
 
 function JustCallMe(){
+   let chagedText;
+   click2 = !click2; // Toggle click2
+   if(click2){
+       chagedText = "Welcome to my HTTP server!";
+   } else {
+       chagedText = "Hello, JavaScript!";
+   }
    let heading = document.getElementById("heading");
-   console.log("hello" + heading.innerHTML);
-   heading.innerHTML = "Hello, JavaScript!";
+   heading.innerHTML = chagedText;
    
 }
 

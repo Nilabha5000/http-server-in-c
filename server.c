@@ -178,30 +178,34 @@ int main(){
     server_addr.sin_addr.s_addr = INADDR_ANY;// Localhost
 
     bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr));
-    listen(sockfd,5);
+    listen(sockfd,20);
     printf("server is listeing on port %d\n", port);
-    socklen_t addr_len = sizeof(server_addr);
+    
     int client_sock;
     char buffer[4096] = {0};
     char method[8] = {0} , path[1024] = {0};
     char *filename = NULL;
+    struct sockaddr_in client_addr;
+    socklen_t addr_len = sizeof(client_addr);
     while(1){
-        client_sock = accept(sockfd, (struct sockaddr *)&server_addr, &addr_len);
+        client_sock = accept(sockfd, (struct sockaddr *)&client_addr, &addr_len);
     if(client_sock < 0){
           perror("error \n");
           return 1;
     }
     printf("client connected \n");
-    
+        //this is for receiving the request from browser in the form of string stire in buffer.
         int recv_bytes = recv(client_sock,buffer,4096,0);
+        
         printf("%s\n",buffer);
         if(recv_bytes == 0){
              printf("no bytes are received\n");
         }
+       // extracting method and path from the buffer
         sscanf(buffer,"%s %s",method,path);
   
            if((filename = get_page_name(mp,path)) != NULL){
-                 printf("rendered files is %s\n",filename);
+                 printf("served file is %s\n",filename);
                 // Check the file extension and call the appropriate function
                 if(strstr(filename, ".js") != NULL){
                     sendJS(client_sock, filename);
