@@ -101,14 +101,18 @@ void sendCSS(int clientfd , char *filename){
 }
 // this function sends a image file to the client
 void sendImage(int clientfd , char *filename){
-        if(strstr(filename,".jpg") == NULL){
+        char *pngext = strstr(filename , ".png");
+        char *jpgext = strstr(filename, ".jpg");
+        if(!pngext && !jpgext){
             perror("Provided file is not a image file");
             return;
         }
       FILE *image = fopen(filename,"rb");
       char response_header[1024];
+       if(pngext) strcpy(response_header , "HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n");
+       else strcpy(response_header , "HTTP/1.1 200 OK\r\nContent-Type: image/jpeg\r\n\r\n");
 	  if(image){
-           strcpy(response_header , "HTTP/1.1 200 OK\r\nContent-Type: image/jpeg\r\n\r\n");
+           
             printf("%s\n", response_header);
             int send_bytes = send(clientfd, response_header, strlen(response_header), 0);
 			if(send_bytes == 0){
@@ -164,12 +168,14 @@ int main(){
      route(mp,"/scene1","test/pexels-eberhardgross-1302242.jpg");
      route(mp,"/main.js", "test/main.js");
      route(mp,"/style1","test/style1.css");
+     route(mp,"/photo.png", "test/photo.png");
      printf(" / --> %s\n", get_page_name(mp ,"/"));
      printf(" /about --> %s\n", get_page_name(mp,"/about"));
      printf(" /contact --> %s\n", get_page_name(mp,"/contact"));
      printf(" /scene.jpg --> %s\n", get_page_name(mp,"/scene.jpg"));
      printf("/scene1 --> %s\n", get_page_name(mp,"/scene1"));
      printf(" /main.js --> %s\n", get_page_name(mp ,"/main.js"));
+     printf(" /photo.png --> %s\n", get_page_name(mp ,"/photo.png"));
      printf("---------------------------------------------------\n");
     // Set up the server address structure
     memset(&server_addr, 0, sizeof(server_addr));
@@ -215,7 +221,7 @@ int main(){
                 else if(strstr(filename, ".html") != NULL){
                     sendHTML(client_sock, filename);
                 }
-                else if(strstr(filename, ".jpg") != NULL){
+                else if(strstr(filename, ".jpg") != NULL || strstr(filename, ".png") != NULL){
                     sendImage(client_sock, filename);
                 }
            }
