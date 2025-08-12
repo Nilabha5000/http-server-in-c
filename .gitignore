@@ -1,4 +1,5 @@
 server
+myserver
 *.exe
 *.o
 *.out
